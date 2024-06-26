@@ -75,7 +75,7 @@ if prompt := st.chat_input():
     run = client.beta.threads.runs.create(
        thread_id=thread_id,
      assistant_id=assistant_id,
-     tools=[{"type": "file_search"}],
+     tools=[{"type": "code_interpreter"}],
      )
     
     run_id = run.id
