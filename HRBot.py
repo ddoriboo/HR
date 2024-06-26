@@ -1,13 +1,19 @@
-from openai import OpenAI
 import streamlit as st
+from openai import OpenAI
 import time
 
 assistant_id = "asst_dEdsDLUFiJfPdb53cJ195yVF"
 
-st.set_page_config(page_title="KPMG HR Demo", page_icon="🪣", layout="wide")
+# GitHub 링크 제거를 위한 설정
+st.set_page_config(page_title="KPMG HR Demo", page_icon="🪣", layout="wide", menu_items=None)
+
+# CSS를 사용하여 GitHub 링크와 다른 불필요한 요소들을 숨김
 st.markdown(
     """
     <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
     .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
     .viewerBadge_text__1JaDK {
