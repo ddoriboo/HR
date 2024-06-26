@@ -3,9 +3,9 @@ import streamlit as st
 import time
 
 
-assistant_id = "asst_h9IpqGeEJWlDR0gdbiU553VC"
+assistant_id = "asst_dEdsDLUFiJfPdb53cJ195yVF"
 
-st.set_page_config(page_title="KPMG Demo", page_icon="✨", layout="wide")
+st.set_page_config(page_title="KPMG HR Demo", page_icon="🪣", layout="wide")
 st.markdown(
     """
     <style>
