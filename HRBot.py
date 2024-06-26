@@ -19,7 +19,7 @@ st.markdown(
 )
 
 with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    openai_api_key = st.secrets["openai"]["api_key"]
     client = OpenAI(api_key=openai_api_key)
     thread_id = st.text_input("Thread ID")
     thread_btn = st.button("신규 스레드 생성")
