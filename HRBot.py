@@ -33,14 +33,22 @@ if "messages" not in st.session_state:
 st.title("💬⛏️🪣🧹🔍 삼구 HR 인력 배치 챗봇")
 st.caption("🚀 KPMG AI Center Demo")
 
+# 타이핑 효과 함수
+def simulate_typing(text, speed=0.01):
+    placeholder = st.empty()
+    for i in range(len(text) + 1):
+        placeholder.markdown(text[:i] + "▌")
+        time.sleep(speed)
+    placeholder.markdown(text)
+
 # 메시지 표시
 for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
+    st.chat_message(msg["role"]).markdown(msg["content"])
 
 # 사용자 입력 처리
 if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
+    st.chat_message("user").markdown(prompt)
     
     # OpenAI API 요청
     response = client.beta.threads.messages.create(
@@ -67,11 +75,12 @@ if prompt := st.chat_input():
             if run.status == "completed":
                 break
             else: 
-                time.sleep(2)
+                time.sleep(0.5)
     
     # 응답 처리
     thread_messages = client.beta.threads.messages.list(st.session_state.thread_id)
     assistant_message = thread_messages.data[0].content[0].text.value
     
     st.session_state.messages.append({"role": "assistant", "content": assistant_message})
-    st.chat_message("assistant").write(assistant_message)
+    with st.chat_message("assistant"):
+        simulate_typing(assistant_message, speed=0.01)  # 속도 조절 가능
